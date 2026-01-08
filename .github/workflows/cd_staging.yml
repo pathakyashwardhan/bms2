@@ -1,24 +1,27 @@
 name: Deploy to staging
+
 on:
   push:
-    branches: 
-       - "main"
-
+    branches:
+      - "main"
 
 jobs:
   redeploy_everything:
-     runs-on: ubuntu-latest
-     name: deploy everything to the staging cluster
+    name: Deploy everything to the staging cluster
+    runs-on: ubuntu-latest
 
-     steps:
-      - run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
-          mkdir .ssh
-          echo "${{ secrets.KNOWN_HOSTS }}" &> ~/.ssh/known_hosts
-          ssh -i ~/ssh_key ubuntu@13.233.117.166 
-          cd bms2/ && git pull
-          pnpm install
-          pnpm run build
-          pm2 restart http-server
-          pm2 restart web
-          pm2 restart ws-server            
+    steps:
+      - name: SSH into server and deploy
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/ssh_key
+          chmod 600 ~/ssh_key
+
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.233.117.166 << 'EOF'
+            cd bms2 || exit 1
+            git pull
+            pnpm install
+            pnpm run build
+            pm2 restart http-server
+            pm2 restart web
+            pm2 restart ws-server
+          EOF
