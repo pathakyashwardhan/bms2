@@ -1,84 +1,110 @@
-# Turborepo starter
+🚀 Monorepo Deployment with CI/CD, AWS & HTTPS (Staging & Production)
 
-This Turborepo starter is maintained by the Turborepo core team.
+This project demonstrates real-world deployment of a Monorepo architecture with multiple applications, deployed on cloud infrastructure with separate staging and production environments, custom domains, and HTTPS enabled using AWS certificate management.
 
-## Using this example
+The goal of this project is to showcase production-level DevOps practices, including CI/CD, environment separation, process management, and reverse proxy configuration.
 
-Run the following command:
+📌 Project Overview
 
-```sh
-npx create-turbo@latest
-```
+Monorepo architecture with 3 independent applications
 
-## What's inside?
+Environment separation using main (staging) and prod (production) branches
 
-This Turborepo includes the following packages/apps:
+Automated CI/CD pipeline
 
-### Apps and Packages
+Deployed on Amazon Web Services (EC2)
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+Custom domains for each app and environment
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+HTTPS enabled using AWS Certificate Management
 
-### Utilities
+Reverse proxy configured via NGINX
 
-This Turborepo has some additional tools already setup for you:
+Process management using PM2
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+Monorepo orchestration using Turborepo
 
-### Build
+🧩 Monorepo Structure
+.
+├── apps/
+│   ├── fe-app
+│   ├── http-server
+│   └── ws-server
+├── packages/
+│   └── prisma
+├── turbo.json
+├── package.json
+└── pnpm-workspace.yaml
 
-To build all apps and packages, run the following command:
+🌿 Branching & Environment Strategy
+Branch	Environment
+main	Staging
+prod	Production
+🌍 Domain Mapping
+Production
 
-```
-cd my-turborepo
-pnpm build
-```
+https://project-fe.yashpathak.xyz
 
-### Develop
+https://project-http.yashpathak.xyz
 
-To develop all apps and packages, run the following command:
+https://project-ws.yashpathak.xyz
 
-```
-cd my-turborepo
-pnpm dev
-```
+Staging
 
-### Remote Caching
+https://staging.project-fe.yashpathak.xyz
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+https://staging.project-http.yashpathak.xyz
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+https://staging.project-ws.yashpathak.xyz
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+🔐 HTTPS & Certificates
 
-```
-cd my-turborepo
-npx turbo login
-```
+SSL certificates managed using AWS Certificate Management
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+HTTPS enabled for all services
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+NGINX used for SSL termination and routing
 
-```
-npx turbo link
-```
+⚙️ CI/CD Flow
 
-## Useful Links
+Push code to main or prod
 
-Learn more about the power of Turborepo:
+Server pulls latest changes
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+Install dependencies using pnpm
+
+Build apps using Turborepo
+
+Restart services using PM2
+
+🛠️ Tech Stack
+
+Node.js, TypeScript
+
+Turborepo, pnpm
+
+AWS EC2
+
+NGINX
+
+PM2
+
+Git & GitHub
+
+🎯 Why This Project
+
+Demonstrates real production deployment
+
+Shows DevOps & Cloud skills
+
+Covers CI/CD, HTTPS, Monorepo, NGINX
+
+📌 Author
+
+Yashwardhan Pathak
+
+⚠️ Important Notes
+
+Secrets are managed securely and not committed to the repository
+
+Production and staging deployments are isolated
