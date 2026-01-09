@@ -40,7 +40,7 @@ Monorepo orchestration using Turborepo
 Branch	Environment
 main	Staging
 prod	Production
-🌍 Domain Mapping
+🌍 Domain Mapping (these domains will not work now as i have deleted the instances)
 Production
 
 https://project-fe.yashpathak.xyz
